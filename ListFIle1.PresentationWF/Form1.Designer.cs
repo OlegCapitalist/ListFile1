@@ -176,11 +176,12 @@ namespace ListFile1.PresentationWF
             this.tbxAmount.Name = "tbxAmount";
             this.tbxAmount.Size = new System.Drawing.Size(100, 23);
             this.tbxAmount.TabIndex = 9;
-            this.tbxAmount.Text = "10";
+            this.tbxAmount.Text = "1000";
             // 
             // rbtTemplate
             // 
             this.rbtTemplate.AutoSize = true;
+            this.rbtTemplate.Checked = true;
             this.rbtTemplate.Location = new System.Drawing.Point(38, 92);
             this.rbtTemplate.Name = "rbtTemplate";
             this.rbtTemplate.Size = new System.Drawing.Size(73, 19);
@@ -192,12 +193,10 @@ namespace ListFile1.PresentationWF
             // rbtLength
             // 
             this.rbtLength.AutoSize = true;
-            this.rbtLength.Checked = true;
             this.rbtLength.Location = new System.Drawing.Point(38, 56);
             this.rbtLength.Name = "rbtLength";
             this.rbtLength.Size = new System.Drawing.Size(63, 19);
             this.rbtLength.TabIndex = 7;
-            this.rbtLength.TabStop = true;
             this.rbtLength.Text = "Длина:";
             this.rbtLength.UseVisualStyleBackColor = true;
             // 
@@ -217,7 +216,7 @@ namespace ListFile1.PresentationWF
             this.tbxTemplate.Name = "tbxTemplate";
             this.tbxTemplate.Size = new System.Drawing.Size(71, 23);
             this.tbxTemplate.TabIndex = 4;
-            this.tbxTemplate.Text = "!!!@!";
+            this.tbxTemplate.Text = "!!@!!!";
             // 
             // tbxLength
             // 
