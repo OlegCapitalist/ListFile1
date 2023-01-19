@@ -39,7 +39,7 @@ namespace ListFile1.PresentationWF
 
                     if (name != "" && count > 0)
                     {
-                        ListIncrement.GetList(prizeList, name, count);
+                        ListIncrement.AddToList(prizeList, name, count);
                     }
                 }
             }
@@ -132,7 +132,7 @@ namespace ListFile1.PresentationWF
                         i++;
                         string prizeCount = (string)currentRow.Cells[i].FormattedValue;
 
-                        ListIncrement.GetList(matrixItem.PrizeList, prizeName, Convert.ToInt32(prizeCount));
+                        ListIncrement.AddToList(matrixItem.PrizeList, prizeName, Convert.ToInt32(prizeCount));
                     }
 
                     matrix.Add(matrixItem);
@@ -157,10 +157,12 @@ namespace ListFile1.PresentationWF
         {
             int columnsCount = Convert.ToInt32(tbxColumnsCount.Text);
 
-            dgwTable4.Rows.Clear();
-            dgwTable4.Columns.Clear();
+            dgwTable4.DataSource = null;
 
-            CreateTable4(new DataTable(), columnsCount);
+            var clearTable = new DataTable();
+
+            CreateTable4(clearTable, columnsCount);
+            dgwTable4.DataSource = clearTable;
         }
 
         #endregion

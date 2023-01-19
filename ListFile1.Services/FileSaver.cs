@@ -11,7 +11,7 @@ namespace ListFile1.Services
     {
         public async Task SaveNumeratedListAsync(string fileName, ICollection<Prize> prizeList)
         {
-            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.Default)) //ANSI
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.Default)) 
             {
                 int count = prizeList.Count;
 
@@ -26,25 +26,18 @@ namespace ListFile1.Services
 
         public async Task SaveListAsync(string fileName, IEnumerable<string> list)
         {
-            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.Default)) //ANSI
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.Default)) 
             {
-                int count = 1;
                 foreach (var item in list)
                 {
                     await writer.WriteLineAsync(item);
-
-                    if (count == 512)
-                    {
-                        int x = count;
-                    }
-                    count++;
                 }
             }
         }
 
         public async Task SaveMatrixAsync(string fileName, IEnumerable<Matrix> list)
         {
-            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.Default)) //ANSI
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.Default))
             {
                 await writer.WriteLineAsync("\tprize\tcounter prize\tall counter");
 
