@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListFile1.Models", "ListFil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListFile1.Services", "ListFile1.Services\ListFile1.Services.csproj", "{98C0C9AA-90F0-4A16-9BA6-57E0C1C65365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListFile1.PresentationWPF", "ListFile1.PresentationWPF\ListFile1.PresentationWPF.csproj", "{57BA1041-9A79-4921-B087-16FF1982E91F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListFile1.PresentationWF", "ListFIle1.PresentationWF\ListFile1.PresentationWF.csproj", "{17F5608C-B89A-495A-9ABA-A4CD62BCBDCF}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{98C0C9AA-90F0-4A16-9BA6-57E0C1C65365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98C0C9AA-90F0-4A16-9BA6-57E0C1C65365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98C0C9AA-90F0-4A16-9BA6-57E0C1C65365}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57BA1041-9A79-4921-B087-16FF1982E91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57BA1041-9A79-4921-B087-16FF1982E91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57BA1041-9A79-4921-B087-16FF1982E91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57BA1041-9A79-4921-B087-16FF1982E91F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17F5608C-B89A-495A-9ABA-A4CD62BCBDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17F5608C-B89A-495A-9ABA-A4CD62BCBDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17F5608C-B89A-495A-9ABA-A4CD62BCBDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
