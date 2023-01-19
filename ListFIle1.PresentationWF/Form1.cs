@@ -8,7 +8,6 @@ namespace ListFile1.PresentationWF
     {
         #region Private Fields
 
-        private DataTable _testTable;
         private FileSaver _fileSaver;
 
         #endregion
@@ -25,7 +24,7 @@ namespace ListFile1.PresentationWF
 
         #region Forms Events
 
-        private void SaveFile_Click(object sender, EventArgs e)
+        private async void SaveFile_Click(object sender, EventArgs e)
         {
             var prizeList = new List<Prize>();
 
@@ -40,7 +39,7 @@ namespace ListFile1.PresentationWF
 
                     if (name != "" && count > 0)
                     {
-                        ListIncrement.Increment(prizeList, name, count);
+                        ListIncrement.GetList(prizeList, name, count);
                     }
                 }
             }
@@ -51,15 +50,18 @@ namespace ListFile1.PresentationWF
                 return;
             }
 
-            if (rbtRandomize.Enabled)
-                prizeList = RandomizeList<Prize>.Randomize(prizeList);
+            if (rbtRandomize.Checked)
+                prizeList = RandomizeList<Prize>.GetList(prizeList);
+
+            if (rbtProportion.Checked)
+                prizeList = Proporcion.GetList(prizeList);
 
             if (saveFileDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
 
-            _fileSaver.SaveNumeratedListAsync(saveFileDialog.FileName, prizeList).Wait();
+            await _fileSaver.SaveNumeratedListAsync(saveFileDialog.FileName, prizeList);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -68,7 +70,7 @@ namespace ListFile1.PresentationWF
             FillTable4TestData();
         }
 
-        private void btnSaveCodes_Click(object sender, EventArgs e)
+        private async void btnSaveCodes_Click(object sender, EventArgs e)
         {
             CodeGenerator codeGenerator;
 
@@ -91,7 +93,7 @@ namespace ListFile1.PresentationWF
                 return;
             }
 
-            var codes = codeGenerator.GetCodes();
+            var codes = codeGenerator.GetList();
 
             if (codes.Count == 0)
             {
@@ -104,10 +106,10 @@ namespace ListFile1.PresentationWF
                 return;
             }
 
-            _fileSaver.SaveListAsync(saveFileDialog.FileName, codes).Wait();
+            await _fileSaver.SaveListAsync(saveFileDialog.FileName, codes);
         }
 
-        private void btnSaveTable_Click(object sender, EventArgs e)
+        private async void btnSaveTable_Click(object sender, EventArgs e)
         {
             var matrix = new List<Matrix>();
 
@@ -130,7 +132,7 @@ namespace ListFile1.PresentationWF
                         i++;
                         string prizeCount = (string)currentRow.Cells[i].FormattedValue;
 
-                        ListIncrement.Increment(matrixItem.PrizeList, prizeName, Convert.ToInt32(prizeCount));
+                        ListIncrement.GetList(matrixItem.PrizeList, prizeName, Convert.ToInt32(prizeCount));
                     }
 
                     matrix.Add(matrixItem);
@@ -148,9 +150,17 @@ namespace ListFile1.PresentationWF
                 return;
             }
 
-            _fileSaver.SaveMatrixAsync(saveFileDialog.FileName, matrix).Wait();
+            await _fileSaver.SaveMatrixAsync(saveFileDialog.FileName, matrix);
+        }
 
+        private void btnCreateColumns_Click(object sender, EventArgs e)
+        {
+            int columnsCount = Convert.ToInt32(tbxColumnsCount.Text);
 
+            dgwTable4.Rows.Clear();
+            dgwTable4.Columns.Clear();
+
+            CreateTable4(new DataTable(), columnsCount);
         }
 
         #endregion

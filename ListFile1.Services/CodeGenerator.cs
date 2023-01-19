@@ -63,7 +63,7 @@ namespace ListFile1.Services
 
         #region Public Methods
 
-        public List<string> GetCodes()
+        public List<string> GetList()
         {
             var codes = new List<string>();
 

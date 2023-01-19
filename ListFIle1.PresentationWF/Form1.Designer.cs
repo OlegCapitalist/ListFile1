@@ -52,6 +52,7 @@ namespace ListFile1.PresentationWF
             this.lblColumnsCount = new System.Windows.Forms.Label();
             this.tbxColumnsCount = new System.Windows.Forms.TextBox();
             this.dgwTable4 = new System.Windows.Forms.DataGridView();
+            this.btnCreateColumns = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageOption12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTable12)).BeginInit();
@@ -245,6 +246,7 @@ namespace ListFile1.PresentationWF
             // 
             // tabPageOption4
             // 
+            this.tabPageOption4.Controls.Add(this.btnCreateColumns);
             this.tabPageOption4.Controls.Add(this.btnSaveTable);
             this.tabPageOption4.Controls.Add(this.lblColumnsCount);
             this.tabPageOption4.Controls.Add(this.tbxColumnsCount);
@@ -280,7 +282,7 @@ namespace ListFile1.PresentationWF
             // 
             this.tbxColumnsCount.Location = new System.Drawing.Point(134, 374);
             this.tbxColumnsCount.Name = "tbxColumnsCount";
-            this.tbxColumnsCount.Size = new System.Drawing.Size(100, 23);
+            this.tbxColumnsCount.Size = new System.Drawing.Size(43, 23);
             this.tbxColumnsCount.TabIndex = 1;
             this.tbxColumnsCount.Text = "5";
             // 
@@ -292,6 +294,16 @@ namespace ListFile1.PresentationWF
             this.dgwTable4.RowTemplate.Height = 25;
             this.dgwTable4.Size = new System.Drawing.Size(768, 353);
             this.dgwTable4.TabIndex = 0;
+            // 
+            // btnCreateColumns
+            // 
+            this.btnCreateColumns.Location = new System.Drawing.Point(183, 374);
+            this.btnCreateColumns.Name = "btnCreateColumns";
+            this.btnCreateColumns.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateColumns.TabIndex = 4;
+            this.btnCreateColumns.Text = "Создать";
+            this.btnCreateColumns.UseVisualStyleBackColor = true;
+            this.btnCreateColumns.Click += new System.EventHandler(this.btnCreateColumns_Click);
             // 
             // Form1
             // 
@@ -339,5 +351,6 @@ namespace ListFile1.PresentationWF
         private Label lblColumnsCount;
         private TextBox tbxColumnsCount;
         private DataGridView dgwTable4;
+        private Button btnCreateColumns;
     }
 }
