@@ -31,19 +31,15 @@ namespace ListFile1.PresentationWF
         {
             var prizeList = new List<Prize>();
 
-            foreach(var row in dgwTable12.Rows)
+            foreach (var row in dgwTable12.Rows
+                    .OfType<DataGridViewRow>()
+                    .SkipLast(1).ToList())
             {
-                if (row is DataGridViewRow currentRow)
+                string name = row.Cells[0].Value.ToString();
+                int count = int.Parse(row.Cells[1].Value.ToString());
+                if (name != "" && count > 0)
                 {
-                    string name = (string)currentRow.Cells[0].FormattedValue;
-                    string countStr = (string)currentRow.Cells[1].FormattedValue;
-
-                    int count = countStr == "" ? 0 : Convert.ToInt32(countStr);
-
-                    if (name != "" && count > 0)
-                    {
-                        _listIncrementService.AddToList(prizeList, name, count);
-                    }
+                    _listIncrementService.AddToList(prizeList, name, count);
                 }
             }
 
@@ -126,30 +122,30 @@ namespace ListFile1.PresentationWF
         {
             var matrix = new List<Matrix>();
 
-            foreach (var row in dgwTable4.Rows)
+            foreach (var row in dgwTable12.Rows
+                    .OfType<DataGridViewRow>()
+                    .SkipLast(1).ToList())
             {
-                if (row is DataGridViewRow currentRow)
+                string city = row.Cells[0].Value.ToString();
+
+                if (city == "")
+                    break;
+
+                var matrixItem = new Matrix() { City = city };
+
+                matrixItem.PrizeList = new();
+
+                for (int i = 1; i < row.Cells.Count; i++)
                 {
-                    string city = (string)currentRow.Cells[0].FormattedValue;
+                    string prizeName = row.Cells[i].Value.ToString();
+                    i++;
+                    int prizeCount = int.Parse(row.Cells[i].Value.ToString());
 
-                    if (city == "")
-                        break;
-
-                    var matrixItem = new Matrix() { City = city };
-
-                    matrixItem.PrizeList = new();
-
-                    for (int i = 1; i < currentRow.Cells.Count; i++)
-                    {
-                        string prizeName = (string)currentRow.Cells[i].FormattedValue;
-                        i++;
-                        string prizeCount = (string)currentRow.Cells[i].FormattedValue;
-
-                        _listIncrementService.AddToList(matrixItem.PrizeList, prizeName, Convert.ToInt32(prizeCount));
-                    }
-
-                    matrix.Add(matrixItem);
+                    _listIncrementService.AddToList(matrixItem.PrizeList, prizeName, prizeCount);
                 }
+
+                matrix.Add(matrixItem);
+                
             }
 
             if (matrix.Count == 0)
