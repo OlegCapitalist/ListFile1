@@ -54,7 +54,14 @@ namespace ListFile1.PresentationWF
                 prizeList = RandomizeList<Prize>.GetList(prizeList);
 
             if (rbtProportion.Checked)
-                prizeList = Proporcion.GetList(prizeList);
+            {
+                var inputParams = dgwTable12.Rows
+                    .OfType<DataGridViewRow>()
+                    .SkipLast(1)
+                    .Select(w => new InputPrize(w.Cells[0].Value.ToString(), int.Parse(w.Cells[1].Value.ToString()))).ToList();
+
+                prizeList = Proporcion.GetListOredrly(inputParams);
+            }
 
             if (saveFileDialog.ShowDialog() != DialogResult.OK)
             {

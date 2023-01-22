@@ -9,6 +9,39 @@ namespace ListFile1.Services
 {
     public static class Proporcion
     {
+        public static List<Prize> GetListOredrly(List<InputPrize> words)
+        {
+            List<Prize> result = new List<Prize>();
+            var orderedByCounting = words.OrderByDescending(x => x.Count).ToList();
+            var countElements = words.Sum(x => x.Count);
+
+            int maxItemCount = orderedByCounting.First().Count;
+            int secondMaxItemCount = orderedByCounting.Count() > 1 ? orderedByCounting.Skip(1).First().Count : 1;
+
+            int countOfGroups = (int)Math.Round((decimal)(maxItemCount / secondMaxItemCount), MidpointRounding.AwayFromZero);
+            List<List<Prize>> resultGrops = Enumerable.Range(0, countOfGroups).Select(o => new List<Prize>()).ToList();
+
+            for (int currentItem = 0; currentItem < countElements; currentItem++)
+            {
+                for (int group = 0; group < countOfGroups; group++)
+                {
+                    for (int currentWordNumber = 0; currentWordNumber < words.Count; currentWordNumber++)
+                    {
+                        var currentWord = words[currentWordNumber];
+                        if (currentWord.Count == 0)
+                        {
+                            continue;
+                        }
+                        resultGrops[group].Add(new Prize() { Name = currentWord.Name, Number = currentItem });
+                        currentWord.Count--;
+                    }
+                }
+            }
+
+            resultGrops.ForEach(l => result.AddRange(l.OrderBy(lr => lr.Name)));
+            return result;
+        }
+
         public static List<Prize> GetList(List<Prize> list)
         {
             const double offset = 0.4;
