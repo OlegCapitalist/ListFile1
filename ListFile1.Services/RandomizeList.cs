@@ -7,9 +7,9 @@ using ListFile1.Models;
 
 namespace ListFile1.Services
 {
-    public static class RandomizeList<T> where T : class
+    public class RandomizeList<T> where T : class
     {
-        public static List<T> GetList(List<T> collection)
+        public List<T> GetList(List<T> collection)
         {
             var rnd = new Random();
             var result = new List<T>();

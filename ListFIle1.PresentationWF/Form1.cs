@@ -9,6 +9,7 @@ namespace ListFile1.PresentationWF
         #region Private Fields
 
         private FileSaver _fileSaver;
+        private ListIncrement _listIncrementService;
 
         #endregion
 
@@ -17,6 +18,8 @@ namespace ListFile1.PresentationWF
         public Form1()
         {
             _fileSaver = new();
+            _listIncrementService = new();
+
             InitializeComponent();
         }
 
@@ -39,7 +42,7 @@ namespace ListFile1.PresentationWF
 
                     if (name != "" && count > 0)
                     {
-                        ListIncrement.AddToList(prizeList, name, count);
+                        _listIncrementService.AddToList(prizeList, name, count);
                     }
                 }
             }
@@ -51,7 +54,10 @@ namespace ListFile1.PresentationWF
             }
 
             if (rbtRandomize.Checked)
-                prizeList = RandomizeList<Prize>.GetList(prizeList);
+            {
+                var randomizeListService = new RandomizeList<Prize>();
+                prizeList = randomizeListService.GetList(prizeList);
+            }    
 
             if (rbtProportion.Checked)
             {
@@ -139,7 +145,7 @@ namespace ListFile1.PresentationWF
                         i++;
                         string prizeCount = (string)currentRow.Cells[i].FormattedValue;
 
-                        ListIncrement.AddToList(matrixItem.PrizeList, prizeName, Convert.ToInt32(prizeCount));
+                        _listIncrementService.AddToList(matrixItem.PrizeList, prizeName, Convert.ToInt32(prizeCount));
                     }
 
                     matrix.Add(matrixItem);
