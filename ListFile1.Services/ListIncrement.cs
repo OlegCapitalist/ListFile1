@@ -2,9 +2,9 @@
 
 namespace ListFile1.Services
 {
-    public static class ListIncrement
+    public class ListIncrement
     {
-        public static void AddToList(ICollection<Prize> prizes, string Name, int count)
+        public void AddToList(ICollection<Prize> prizes, string Name, int count)
         {
             for (int i = count; i >= 1; i--)
             {
