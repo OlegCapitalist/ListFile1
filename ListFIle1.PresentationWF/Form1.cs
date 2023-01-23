@@ -92,16 +92,24 @@ namespace ListFile1.PresentationWF
             int amount = Convert.ToInt32(tbxAmount.Text);
             int length = Convert.ToInt32(tbxLength.Text);
 
-            if (rbtLength.Checked)
+            try
             {
-                codeGenerator = new (range, length, amount);
+                if (rbtLength.Checked)
+                {
+                    codeGenerator = new(range, length, amount);
+                }
+                else if (rbtTemplate.Checked)
+                {
+                    codeGenerator = new(range, template, amount);
+                }
+                else
+                {
+                    return;
+                }
             }
-            else if (rbtTemplate.Checked)
+            catch (ArgumentOutOfRangeException ex)
             {
-                codeGenerator = new(range, template, amount);
-            }
-            else
-            {
+                MessageBox.Show($"Максимально возможное количество комбинаций: {ex.ActualValue}");
                 return;
             }
 
@@ -125,7 +133,7 @@ namespace ListFile1.PresentationWF
         {
             var matrix = new List<Matrix>();
 
-            foreach (var row in dgwTable12.Rows
+            foreach (var row in dgwTable4.Rows
                     .OfType<DataGridViewRow>()
                     .SkipLast(1).ToList())
             {
@@ -185,6 +193,16 @@ namespace ListFile1.PresentationWF
             }
         }
 
+        private void tbxTemplate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            const string validCharsForTemplate = " -!@";
+
+            if (!char.IsControl(e.KeyChar) && !validCharsForTemplate.Contains(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -235,8 +253,10 @@ namespace ListFile1.PresentationWF
             //tbxLength.KeyPress += new KeyPressEventHandler(IntOnly_KeyPress);
         }
 
+
+
         #endregion
 
-
+        
     }
 }

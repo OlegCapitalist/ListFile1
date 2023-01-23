@@ -220,6 +220,7 @@ namespace ListFile1.PresentationWF
             this.tbxTemplate.Size = new System.Drawing.Size(71, 23);
             this.tbxTemplate.TabIndex = 4;
             this.tbxTemplate.Text = "!!@!!!";
+            this.tbxTemplate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxTemplate_KeyPress);
             // 
             // tbxLength
             // 
