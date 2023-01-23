@@ -1,4 +1,5 @@
-﻿
+﻿using ListFile1.PresentationWF.Extensions;
+
 namespace ListFile1.PresentationWF
 {
     partial class Form1
@@ -48,11 +49,11 @@ namespace ListFile1.PresentationWF
             this.lblRange = new System.Windows.Forms.Label();
             this.tbxRange = new System.Windows.Forms.TextBox();
             this.tabPageOption4 = new System.Windows.Forms.TabPage();
+            this.btnCreateColumns = new System.Windows.Forms.Button();
             this.btnSaveTable = new System.Windows.Forms.Button();
             this.lblColumnsCount = new System.Windows.Forms.Label();
             this.tbxColumnsCount = new System.Windows.Forms.TextBox();
             this.dgwTable4 = new System.Windows.Forms.DataGridView();
-            this.btnCreateColumns = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageOption12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTable12)).BeginInit();
@@ -178,6 +179,7 @@ namespace ListFile1.PresentationWF
             this.tbxAmount.Size = new System.Drawing.Size(100, 23);
             this.tbxAmount.TabIndex = 9;
             this.tbxAmount.Text = "1000";
+            this.tbxAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntOnly_KeyPress);
             // 
             // rbtTemplate
             // 
@@ -226,6 +228,7 @@ namespace ListFile1.PresentationWF
             this.tbxLength.Size = new System.Drawing.Size(70, 23);
             this.tbxLength.TabIndex = 2;
             this.tbxLength.Text = "3";
+            this.tbxLength.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntOnly_KeyPress);
             // 
             // lblRange
             // 
@@ -259,6 +262,16 @@ namespace ListFile1.PresentationWF
             this.tabPageOption4.Text = "Вариант 4";
             this.tabPageOption4.UseVisualStyleBackColor = true;
             // 
+            // btnCreateColumns
+            // 
+            this.btnCreateColumns.Location = new System.Drawing.Point(183, 374);
+            this.btnCreateColumns.Name = "btnCreateColumns";
+            this.btnCreateColumns.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateColumns.TabIndex = 4;
+            this.btnCreateColumns.Text = "Создать";
+            this.btnCreateColumns.UseVisualStyleBackColor = true;
+            this.btnCreateColumns.Click += new System.EventHandler(this.btnCreateColumns_Click);
+            // 
             // btnSaveTable
             // 
             this.btnSaveTable.Location = new System.Drawing.Point(687, 373);
@@ -285,6 +298,7 @@ namespace ListFile1.PresentationWF
             this.tbxColumnsCount.Size = new System.Drawing.Size(43, 23);
             this.tbxColumnsCount.TabIndex = 1;
             this.tbxColumnsCount.Text = "5";
+            this.tbxColumnsCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntOnly_KeyPress);
             // 
             // dgwTable4
             // 
@@ -294,16 +308,6 @@ namespace ListFile1.PresentationWF
             this.dgwTable4.RowTemplate.Height = 25;
             this.dgwTable4.Size = new System.Drawing.Size(768, 353);
             this.dgwTable4.TabIndex = 0;
-            // 
-            // btnCreateColumns
-            // 
-            this.btnCreateColumns.Location = new System.Drawing.Point(183, 374);
-            this.btnCreateColumns.Name = "btnCreateColumns";
-            this.btnCreateColumns.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateColumns.TabIndex = 4;
-            this.btnCreateColumns.Text = "Создать";
-            this.btnCreateColumns.UseVisualStyleBackColor = true;
-            this.btnCreateColumns.Click += new System.EventHandler(this.btnCreateColumns_Click);
             // 
             // Form1
             // 

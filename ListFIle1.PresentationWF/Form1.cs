@@ -1,6 +1,7 @@
 using ListFile1.Models;
 using ListFile1.Services;
 using System.Data;
+//using ListFile1.PresentationWF.Extensions;
 
 namespace ListFile1.PresentationWF
 {
@@ -19,6 +20,8 @@ namespace ListFile1.PresentationWF
         {
             _fileSaver = new();
             _listIncrementService = new();
+
+            SetIntTextBoxes();
 
             InitializeComponent();
         }
@@ -174,6 +177,14 @@ namespace ListFile1.PresentationWF
             dgwTable4.DataSource = clearTable;
         }
 
+        private void IntOnly_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -218,6 +229,14 @@ namespace ListFile1.PresentationWF
             }
         }
 
+        private void SetIntTextBoxes()
+        {
+            //tbxLength.SetIntValidation();
+            //tbxLength.KeyPress += new KeyPressEventHandler(IntOnly_KeyPress);
+        }
+
         #endregion
+
+
     }
 }
