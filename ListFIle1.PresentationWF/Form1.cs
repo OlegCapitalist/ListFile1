@@ -1,7 +1,6 @@
 using ListFile1.Models;
 using ListFile1.Services;
 using System.Data;
-//using ListFile1.PresentationWF.Extensions;
 
 namespace ListFile1.PresentationWF
 {
@@ -21,8 +20,6 @@ namespace ListFile1.PresentationWF
             _fileSaver = new();
             _listIncrementService = new();
 
-            SetIntTextBoxes();
-
             InitializeComponent();
         }
 
@@ -38,8 +35,8 @@ namespace ListFile1.PresentationWF
                     .OfType<DataGridViewRow>()
                     .SkipLast(1).ToList())
             {
-                string name = row.Cells[0].Value.ToString();
-                int count = int.Parse(row.Cells[1].Value.ToString());
+                string name = row.Cells["PrizeName"].Value.ToString();
+                int count = int.Parse(row.Cells["Amount"].Value.ToString());
                 if (name != "" && count > 0)
                 {
                     _listIncrementService.AddToList(prizeList, name, count);
@@ -56,14 +53,14 @@ namespace ListFile1.PresentationWF
             {
                 var randomizeListService = new RandomizeList<Prize>();
                 prizeList = randomizeListService.GetList(prizeList);
-            }    
+            }
 
             if (rbtProportion.Checked)
             {
                 var inputParams = dgwTable12.Rows
                     .OfType<DataGridViewRow>()
                     .SkipLast(1)
-                    .Select(w => new InputPrize(w.Cells[0].Value.ToString(), int.Parse(w.Cells[1].Value.ToString()))).ToList();
+                    .Select(w => new InputPrize(w.Cells["PrizeName"].Value.ToString(), int.Parse(w.Cells["Amount"].Value.ToString()))).ToList();
 
                 prizeList = Proporcion.GetListOredrly(inputParams);
             }
@@ -137,7 +134,7 @@ namespace ListFile1.PresentationWF
                     .OfType<DataGridViewRow>()
                     .SkipLast(1).ToList())
             {
-                string city = row.Cells[0].Value.ToString();
+                string city = row.Cells["BlockName"].Value.ToString();
 
                 if (city == "")
                     break;
@@ -156,7 +153,7 @@ namespace ListFile1.PresentationWF
                 }
 
                 matrix.Add(matrixItem);
-                
+
             }
 
             if (matrix.Count == 0)
@@ -203,6 +200,19 @@ namespace ListFile1.PresentationWF
             }
         }
 
+        private void tbxRange_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void dgw_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            // do nothing
+        }
+
         #endregion
 
         #region Private Methods
@@ -210,8 +220,8 @@ namespace ListFile1.PresentationWF
         private void FillTable12TestData()
         {
             var testTable = new DataTable();
-            testTable.Columns.Add(new DataColumn("Prize", typeof(string)) { ColumnName = "Приз" });
-            testTable.Columns.Add(new DataColumn("Amount", typeof(int)) { ColumnName = "Количество", DefaultValue = 0 });
+            testTable.Columns.Add(new DataColumn("PrizeName", typeof(string)) { Caption = "Приз" });
+            testTable.Columns.Add(new DataColumn("Amount", typeof(uint)) { Caption = "Количество", DefaultValue = 0 });
 
             testTable.Rows.Add("Чашка", 5);
             testTable.Rows.Add("Стакан", 2);
@@ -227,36 +237,26 @@ namespace ListFile1.PresentationWF
 
             CreateTable4(testTable, 5);
 
-            testTable.Rows.Add("Киев",          "5%", 100,  "7%", 50, "10%", 30, "15%", 10, "25%", 3);
-            testTable.Rows.Add("Одесса",        "5%", 90,   "7%", 30, "10%", 25, "15%", 6,  "25%", 2);
-            testTable.Rows.Add("Севастополь",   "5%", 80,   "7%", 60, "10%", 16, "15%", 7,  "25%", 4);
-            testTable.Rows.Add("Харьков",       "5%", 95,   "7%", 50, "10%", 23, "15%", 9,  "25%", 2);
-            testTable.Rows.Add("Львов",         "5%", 70,   "7%", 30, "10%", 29, "15%", 12, "25%", 1);
+            testTable.Rows.Add("Киев", "5%", 100, "7%", 50, "10%", 30, "15%", 10, "25%", 3);
+            testTable.Rows.Add("Одесса", "5%", 90, "7%", 30, "10%", 25, "15%", 6, "25%", 2);
+            testTable.Rows.Add("Севастополь", "5%", 80, "7%", 60, "10%", 16, "15%", 7, "25%", 4);
+            testTable.Rows.Add("Харьков", "5%", 95, "7%", 50, "10%", 23, "15%", 9, "25%", 2);
+            testTable.Rows.Add("Львов", "5%", 70, "7%", 30, "10%", 29, "15%", 12, "25%", 1);
 
             dgwTable4.DataSource = testTable;
         }
 
         private void CreateTable4(DataTable testTable, int columnsCount)
         {
-            testTable.Columns.Add(new DataColumn("BlockName", typeof(string)) { ColumnName = "Наименование блока" });
+            testTable.Columns.Add(new DataColumn("BlockName", typeof(string)) { Caption = "Наименование блока" });
 
             for (int i = 1; i <= columnsCount; i++)
             {
-                testTable.Columns.Add(new DataColumn($"PrizeName{i}", typeof(string)) { ColumnName = $"Приз {i}" }) ;
-                testTable.Columns.Add(new DataColumn($"Amount{i}", typeof(int)) { ColumnName = $"Количество Приз {i}", DefaultValue = 0 });
+                testTable.Columns.Add(new DataColumn($"PrizeName{i}", typeof(string)) { Caption = $"Приз {i}" });
+                testTable.Columns.Add(new DataColumn($"Amount{i}", typeof(int)) { Caption = $"Количество Приз {i}", DefaultValue = 0 });
             }
         }
 
-        private void SetIntTextBoxes()
-        {
-            //tbxLength.SetIntValidation();
-            //tbxLength.KeyPress += new KeyPressEventHandler(IntOnly_KeyPress);
-        }
-
-
-
         #endregion
-
-        
     }
 }
