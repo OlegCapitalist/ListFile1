@@ -48,11 +48,11 @@ namespace ListFile1.PresentationWF
             this.lblRange = new System.Windows.Forms.Label();
             this.tbxRange = new System.Windows.Forms.TextBox();
             this.tabPageOption4 = new System.Windows.Forms.TabPage();
+            this.btnCreateColumns = new System.Windows.Forms.Button();
             this.btnSaveTable = new System.Windows.Forms.Button();
             this.lblColumnsCount = new System.Windows.Forms.Label();
             this.tbxColumnsCount = new System.Windows.Forms.TextBox();
             this.dgwTable4 = new System.Windows.Forms.DataGridView();
-            this.btnCreateColumns = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageOption12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTable12)).BeginInit();
@@ -71,10 +71,11 @@ namespace ListFile1.PresentationWF
             this.tabControl1.Controls.Add(this.tabPageOption12);
             this.tabControl1.Controls.Add(this.tabPageOption3);
             this.tabControl1.Controls.Add(this.tabPageOption4);
-            this.tabControl1.Location = new System.Drawing.Point(12, 4);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 434);
+            this.tabControl1.Size = new System.Drawing.Size(800, 450);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPageOption12
@@ -87,13 +88,14 @@ namespace ListFile1.PresentationWF
             this.tabPageOption12.Location = new System.Drawing.Point(4, 24);
             this.tabPageOption12.Name = "tabPageOption12";
             this.tabPageOption12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageOption12.Size = new System.Drawing.Size(768, 406);
+            this.tabPageOption12.Size = new System.Drawing.Size(792, 422);
             this.tabPageOption12.TabIndex = 0;
-            this.tabPageOption12.Text = "Варианты 1, 2";
+            this.tabPageOption12.Text = "List base";
             this.tabPageOption12.UseVisualStyleBackColor = true;
             // 
             // rbtRandomize
             // 
+            this.rbtRandomize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtRandomize.AutoSize = true;
             this.rbtRandomize.Location = new System.Drawing.Point(599, 108);
             this.rbtRandomize.Name = "rbtRandomize";
@@ -104,6 +106,7 @@ namespace ListFile1.PresentationWF
             // 
             // rbtProportion
             // 
+            this.rbtProportion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtProportion.AutoSize = true;
             this.rbtProportion.Location = new System.Drawing.Point(599, 83);
             this.rbtProportion.Name = "rbtProportion";
@@ -114,6 +117,7 @@ namespace ListFile1.PresentationWF
             // 
             // rbtStraigth
             // 
+            this.rbtStraigth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbtStraigth.AutoSize = true;
             this.rbtStraigth.Checked = true;
             this.rbtStraigth.Location = new System.Drawing.Point(599, 58);
@@ -126,7 +130,8 @@ namespace ListFile1.PresentationWF
             // 
             // SaveFile
             // 
-            this.SaveFile.Location = new System.Drawing.Point(687, 377);
+            this.SaveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveFile.Location = new System.Drawing.Point(709, 391);
             this.SaveFile.Name = "SaveFile";
             this.SaveFile.Size = new System.Drawing.Size(75, 23);
             this.SaveFile.TabIndex = 2;
@@ -136,12 +141,15 @@ namespace ListFile1.PresentationWF
             // 
             // dgwTable12
             // 
+            this.dgwTable12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgwTable12.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwTable12.Location = new System.Drawing.Point(-4, 0);
             this.dgwTable12.Name = "dgwTable12";
             this.dgwTable12.RowTemplate.Height = 25;
-            this.dgwTable12.Size = new System.Drawing.Size(581, 410);
+            this.dgwTable12.Size = new System.Drawing.Size(484, 422);
             this.dgwTable12.TabIndex = 1;
+            this.dgwTable12.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgw_DataError);
             // 
             // tabPageOption3
             // 
@@ -157,9 +165,9 @@ namespace ListFile1.PresentationWF
             this.tabPageOption3.Location = new System.Drawing.Point(4, 24);
             this.tabPageOption3.Name = "tabPageOption3";
             this.tabPageOption3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageOption3.Size = new System.Drawing.Size(768, 406);
+            this.tabPageOption3.Size = new System.Drawing.Size(792, 422);
             this.tabPageOption3.TabIndex = 1;
-            this.tabPageOption3.Text = "Вариант 3";
+            this.tabPageOption3.Text = "Code generation";
             this.tabPageOption3.UseVisualStyleBackColor = true;
             // 
             // lblAmount
@@ -175,9 +183,11 @@ namespace ListFile1.PresentationWF
             // 
             this.tbxAmount.Location = new System.Drawing.Point(125, 125);
             this.tbxAmount.Name = "tbxAmount";
+            this.tbxAmount.PlaceholderText = "задайте количество";
             this.tbxAmount.Size = new System.Drawing.Size(100, 23);
             this.tbxAmount.TabIndex = 9;
             this.tbxAmount.Text = "1000";
+            this.tbxAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntOnly_KeyPress);
             // 
             // rbtTemplate
             // 
@@ -203,7 +213,8 @@ namespace ListFile1.PresentationWF
             // 
             // btnSaveCodes
             // 
-            this.btnSaveCodes.Location = new System.Drawing.Point(687, 377);
+            this.btnSaveCodes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveCodes.Location = new System.Drawing.Point(709, 391);
             this.btnSaveCodes.Name = "btnSaveCodes";
             this.btnSaveCodes.Size = new System.Drawing.Size(75, 23);
             this.btnSaveCodes.TabIndex = 6;
@@ -215,17 +226,21 @@ namespace ListFile1.PresentationWF
             // 
             this.tbxTemplate.Location = new System.Drawing.Point(125, 91);
             this.tbxTemplate.Name = "tbxTemplate";
-            this.tbxTemplate.Size = new System.Drawing.Size(71, 23);
+            this.tbxTemplate.PlaceholderText = "задайте шаблон";
+            this.tbxTemplate.Size = new System.Drawing.Size(100, 23);
             this.tbxTemplate.TabIndex = 4;
             this.tbxTemplate.Text = "!!@!!!";
+            this.tbxTemplate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxTemplate_KeyPress);
             // 
             // tbxLength
             // 
             this.tbxLength.Location = new System.Drawing.Point(126, 55);
             this.tbxLength.Name = "tbxLength";
-            this.tbxLength.Size = new System.Drawing.Size(70, 23);
+            this.tbxLength.PlaceholderText = "задайте длину";
+            this.tbxLength.Size = new System.Drawing.Size(99, 23);
             this.tbxLength.TabIndex = 2;
             this.tbxLength.Text = "3";
+            this.tbxLength.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntOnly_KeyPress);
             // 
             // lblRange
             // 
@@ -238,11 +253,14 @@ namespace ListFile1.PresentationWF
             // 
             // tbxRange
             // 
+            this.tbxRange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxRange.Location = new System.Drawing.Point(126, 17);
             this.tbxRange.Name = "tbxRange";
-            this.tbxRange.Size = new System.Drawing.Size(636, 23);
+            this.tbxRange.PlaceholderText = "введите все допустимые символы";
+            this.tbxRange.Size = new System.Drawing.Size(658, 23);
             this.tbxRange.TabIndex = 0;
             this.tbxRange.Text = "AZVREBNKLYURDWXvgfht1236789";
+            this.tbxRange.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxRange_KeyPress);
             // 
             // tabPageOption4
             // 
@@ -254,14 +272,26 @@ namespace ListFile1.PresentationWF
             this.tabPageOption4.Location = new System.Drawing.Point(4, 24);
             this.tabPageOption4.Name = "tabPageOption4";
             this.tabPageOption4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageOption4.Size = new System.Drawing.Size(768, 406);
+            this.tabPageOption4.Size = new System.Drawing.Size(792, 422);
             this.tabPageOption4.TabIndex = 2;
-            this.tabPageOption4.Text = "Вариант 4";
+            this.tabPageOption4.Text = "Adv campaign (split)";
             this.tabPageOption4.UseVisualStyleBackColor = true;
+            // 
+            // btnCreateColumns
+            // 
+            this.btnCreateColumns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreateColumns.Location = new System.Drawing.Point(185, 391);
+            this.btnCreateColumns.Name = "btnCreateColumns";
+            this.btnCreateColumns.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateColumns.TabIndex = 4;
+            this.btnCreateColumns.Text = "Создать";
+            this.btnCreateColumns.UseVisualStyleBackColor = true;
+            this.btnCreateColumns.Click += new System.EventHandler(this.btnCreateColumns_Click);
             // 
             // btnSaveTable
             // 
-            this.btnSaveTable.Location = new System.Drawing.Point(687, 373);
+            this.btnSaveTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveTable.Location = new System.Drawing.Point(709, 391);
             this.btnSaveTable.Name = "btnSaveTable";
             this.btnSaveTable.Size = new System.Drawing.Size(75, 23);
             this.btnSaveTable.TabIndex = 3;
@@ -271,8 +301,9 @@ namespace ListFile1.PresentationWF
             // 
             // lblColumnsCount
             // 
+            this.lblColumnsCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblColumnsCount.AutoSize = true;
-            this.lblColumnsCount.Location = new System.Drawing.Point(6, 377);
+            this.lblColumnsCount.Location = new System.Drawing.Point(8, 394);
             this.lblColumnsCount.Name = "lblColumnsCount";
             this.lblColumnsCount.Size = new System.Drawing.Size(122, 15);
             this.lblColumnsCount.TabIndex = 2;
@@ -280,30 +311,26 @@ namespace ListFile1.PresentationWF
             // 
             // tbxColumnsCount
             // 
-            this.tbxColumnsCount.Location = new System.Drawing.Point(134, 374);
+            this.tbxColumnsCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbxColumnsCount.Location = new System.Drawing.Point(136, 391);
             this.tbxColumnsCount.Name = "tbxColumnsCount";
             this.tbxColumnsCount.Size = new System.Drawing.Size(43, 23);
             this.tbxColumnsCount.TabIndex = 1;
             this.tbxColumnsCount.Text = "5";
+            this.tbxColumnsCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntOnly_KeyPress);
             // 
             // dgwTable4
             // 
+            this.dgwTable4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgwTable4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwTable4.Location = new System.Drawing.Point(0, 3);
             this.dgwTable4.Name = "dgwTable4";
             this.dgwTable4.RowTemplate.Height = 25;
-            this.dgwTable4.Size = new System.Drawing.Size(768, 353);
+            this.dgwTable4.Size = new System.Drawing.Size(792, 382);
             this.dgwTable4.TabIndex = 0;
-            // 
-            // btnCreateColumns
-            // 
-            this.btnCreateColumns.Location = new System.Drawing.Point(183, 374);
-            this.btnCreateColumns.Name = "btnCreateColumns";
-            this.btnCreateColumns.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateColumns.TabIndex = 4;
-            this.btnCreateColumns.Text = "Создать";
-            this.btnCreateColumns.UseVisualStyleBackColor = true;
-            this.btnCreateColumns.Click += new System.EventHandler(this.btnCreateColumns_Click);
+            this.dgwTable4.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgw_DataError);
             // 
             // Form1
             // 
@@ -312,7 +339,7 @@ namespace ListFile1.PresentationWF
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Scratch.Ua (TM) generation software";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPageOption12.ResumeLayout(false);

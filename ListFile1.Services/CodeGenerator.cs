@@ -46,15 +46,15 @@ namespace ListFile1.Services
         public CodeGenerator(string range, string template, int amount)
         {
             CheckValidTemplate(template);
-            //_template = template.Where(x => _validCharsForTemplate.Contains(Convert.ToChar(x)));
 
             _template = template;
             _amount = amount;
 
             SlipRange(range.Trim());
 
-            if (CountCombinationsWithTemplate() < amount)
-                throw new ArgumentOutOfRangeException("Amount is greater than the number of possible combinations", nameof(amount));
+            int countCombinations = CountCombinationsWithTemplate();
+            if (countCombinations < amount)
+                throw new ArgumentOutOfRangeException("Amount is greater than the number of possible combinations", countCombinations, nameof(amount));
 
             _generateCode = GenerateCodeWithTemplate;
         }
