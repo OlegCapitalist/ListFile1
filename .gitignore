@@ -41,3 +41,4 @@
 obj/
 bin/
 TestResults/
+/ListFile1.Models/InputPrize.cs
