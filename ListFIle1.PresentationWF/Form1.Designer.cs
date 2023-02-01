@@ -311,9 +311,9 @@ namespace ListFile1.PresentationWF
             // 
             // btnSaveFile
             // 
-            this.btnSaveFile.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSaveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveFile.CausesValidation = false;
-            this.btnSaveFile.Location = new System.Drawing.Point(781, 23);
+            this.btnSaveFile.Location = new System.Drawing.Point(781, 26);
             this.btnSaveFile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSaveFile.Name = "btnSaveFile";
             this.btnSaveFile.Size = new System.Drawing.Size(86, 31);
@@ -325,7 +325,7 @@ namespace ListFile1.PresentationWF
             // btnSaveCodes
             // 
             this.btnSaveCodes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveCodes.Location = new System.Drawing.Point(781, 21);
+            this.btnSaveCodes.Location = new System.Drawing.Point(781, 23);
             this.btnSaveCodes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSaveCodes.Name = "btnSaveCodes";
             this.btnSaveCodes.Size = new System.Drawing.Size(86, 31);
@@ -337,6 +337,7 @@ namespace ListFile1.PresentationWF
             // 
             // btnCreateColumns
             // 
+            this.btnCreateColumns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreateColumns.Location = new System.Drawing.Point(282, 16);
             this.btnCreateColumns.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCreateColumns.Name = "btnCreateColumns";
@@ -368,7 +369,7 @@ namespace ListFile1.PresentationWF
             // btnSaveTable
             // 
             this.btnSaveTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveTable.Location = new System.Drawing.Point(781, 23);
+            this.btnSaveTable.Location = new System.Drawing.Point(781, 26);
             this.btnSaveTable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSaveTable.Name = "btnSaveTable";
             this.btnSaveTable.Size = new System.Drawing.Size(86, 31);
