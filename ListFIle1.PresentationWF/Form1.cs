@@ -76,7 +76,7 @@ namespace ListFile1.PresentationWF
         private void Form1_Load(object sender, EventArgs e)
         {
             FillTable12TestData();
-            FillTable4TestData();
+            FillTable4TestData(); 
         }
 
         private async void btnSaveCodes_Click(object sender, EventArgs e)
@@ -264,7 +264,8 @@ namespace ListFile1.PresentationWF
         {
             PCreateAdv.Visible = e.TabPageIndex == 2;
             btnSaveTable.Visible = e.TabPageIndex == 2;
-            btnSaveCodes.Visible = e.TabPageIndex == 0 || e.TabPageIndex == 1;
+            btnSaveCodes.Visible = e.TabPageIndex == 1;
+            btnSaveFile.Visible = e.TabPageIndex == 0;
         }
     }
 }

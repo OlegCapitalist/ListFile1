@@ -37,19 +37,19 @@ namespace ListFile1.PresentationWF
             this.rbtProportion = new System.Windows.Forms.RadioButton();
             this.rbtRandomize = new System.Windows.Forms.RadioButton();
             this.rbtStraigth = new System.Windows.Forms.RadioButton();
-            this.SaveFile = new System.Windows.Forms.Button();
             this.tabPageOption3 = new System.Windows.Forms.TabPage();
             this.lblAmount = new System.Windows.Forms.Label();
             this.tbxAmount = new System.Windows.Forms.TextBox();
             this.rbtTemplate = new System.Windows.Forms.RadioButton();
             this.rbtLength = new System.Windows.Forms.RadioButton();
-            this.btnSaveCodes = new System.Windows.Forms.Button();
             this.tbxTemplate = new System.Windows.Forms.TextBox();
             this.tbxLength = new System.Windows.Forms.TextBox();
             this.lblRange = new System.Windows.Forms.Label();
             this.tbxRange = new System.Windows.Forms.TextBox();
             this.tabPageOption4 = new System.Windows.Forms.TabPage();
             this.dgwTable4 = new System.Windows.Forms.DataGridView();
+            this.btnSaveFile = new System.Windows.Forms.Button();
+            this.btnSaveCodes = new System.Windows.Forms.Button();
             this.btnCreateColumns = new System.Windows.Forms.Button();
             this.lblColumnsCount = new System.Windows.Forms.Label();
             this.tbxColumnsCount = new System.Windows.Forms.TextBox();
@@ -95,7 +95,6 @@ namespace ListFile1.PresentationWF
             // tabPageOption12
             // 
             this.tabPageOption12.Controls.Add(this.splitContainer1);
-            this.tabPageOption12.Controls.Add(this.SaveFile);
             this.tabPageOption12.Location = new System.Drawing.Point(4, 29);
             this.tabPageOption12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPageOption12.Name = "tabPageOption12";
@@ -177,18 +176,6 @@ namespace ListFile1.PresentationWF
             this.rbtStraigth.Text = "Прямой";
             this.rbtStraigth.UseVisualStyleBackColor = true;
             // 
-            // SaveFile
-            // 
-            this.SaveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveFile.Location = new System.Drawing.Point(816, 445);
-            this.SaveFile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.SaveFile.Name = "SaveFile";
-            this.SaveFile.Size = new System.Drawing.Size(86, 31);
-            this.SaveFile.TabIndex = 2;
-            this.SaveFile.Text = "Сохранить";
-            this.SaveFile.UseVisualStyleBackColor = true;
-            this.SaveFile.Click += new System.EventHandler(this.SaveFile_Click);
-            // 
             // tabPageOption3
             // 
             this.tabPageOption3.Controls.Add(this.lblAmount);
@@ -251,18 +238,6 @@ namespace ListFile1.PresentationWF
             this.rbtLength.TabIndex = 7;
             this.rbtLength.Text = "Длина:";
             this.rbtLength.UseVisualStyleBackColor = true;
-            // 
-            // btnSaveCodes
-            // 
-            this.btnSaveCodes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveCodes.Location = new System.Drawing.Point(705, 21);
-            this.btnSaveCodes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSaveCodes.Name = "btnSaveCodes";
-            this.btnSaveCodes.Size = new System.Drawing.Size(86, 31);
-            this.btnSaveCodes.TabIndex = 6;
-            this.btnSaveCodes.Text = "Сохранить";
-            this.btnSaveCodes.UseVisualStyleBackColor = true;
-            this.btnSaveCodes.Click += new System.EventHandler(this.btnSaveCodes_Click);
             // 
             // tbxTemplate
             // 
@@ -332,6 +307,32 @@ namespace ListFile1.PresentationWF
             this.dgwTable4.TabIndex = 0;
             this.dgwTable4.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgw_DataError);
             // 
+            // btnSaveFile
+            // 
+            this.btnSaveFile.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSaveFile.CausesValidation = false;
+            this.btnSaveFile.Location = new System.Drawing.Point(781, 21);
+            this.btnSaveFile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSaveFile.Name = "btnSaveFile";
+            this.btnSaveFile.Size = new System.Drawing.Size(86, 31);
+            this.btnSaveFile.TabIndex = 2;
+            this.btnSaveFile.Text = "Сохранить";
+            this.btnSaveFile.UseVisualStyleBackColor = true;
+            this.btnSaveFile.Click += new System.EventHandler(this.SaveFile_Click);
+            // 
+            // btnSaveCodes
+            // 
+            this.btnSaveCodes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveCodes.Location = new System.Drawing.Point(781, 17);
+            this.btnSaveCodes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSaveCodes.Name = "btnSaveCodes";
+            this.btnSaveCodes.Size = new System.Drawing.Size(86, 31);
+            this.btnSaveCodes.TabIndex = 6;
+            this.btnSaveCodes.Text = "Сохранить";
+            this.btnSaveCodes.UseVisualStyleBackColor = true;
+            this.btnSaveCodes.Visible = false;
+            this.btnSaveCodes.Click += new System.EventHandler(this.btnSaveCodes_Click);
+            // 
             // btnCreateColumns
             // 
             this.btnCreateColumns.Location = new System.Drawing.Point(282, 16);
@@ -365,13 +366,14 @@ namespace ListFile1.PresentationWF
             // btnSaveTable
             // 
             this.btnSaveTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveTable.Location = new System.Drawing.Point(797, 21);
+            this.btnSaveTable.Location = new System.Drawing.Point(781, 19);
             this.btnSaveTable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSaveTable.Name = "btnSaveTable";
             this.btnSaveTable.Size = new System.Drawing.Size(86, 31);
             this.btnSaveTable.TabIndex = 3;
             this.btnSaveTable.Text = "Сохранить";
             this.btnSaveTable.UseVisualStyleBackColor = true;
+            this.btnSaveTable.Visible = false;
             this.btnSaveTable.Click += new System.EventHandler(this.btnSaveTable_Click);
             // 
             // splitContainer2
@@ -389,6 +391,7 @@ namespace ListFile1.PresentationWF
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.PCreateAdv);
+            this.splitContainer2.Panel2.Controls.Add(this.btnSaveFile);
             this.splitContainer2.Panel2.Controls.Add(this.btnSaveTable);
             this.splitContainer2.Panel2.Controls.Add(this.btnSaveCodes);
             this.splitContainer2.Size = new System.Drawing.Size(914, 600);
@@ -443,7 +446,7 @@ namespace ListFile1.PresentationWF
         private SaveFileDialog saveFileDialog;
         private TabControl tabControl1;
         private TabPage tabPageOption12;
-        private Button SaveFile;
+        private Button btnSaveFile;
         private DataGridView dgwTable12;
         private TabPage tabPageOption3;
         private TextBox tbxLength;
