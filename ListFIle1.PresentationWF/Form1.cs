@@ -76,7 +76,7 @@ namespace ListFile1.PresentationWF
         private void Form1_Load(object sender, EventArgs e)
         {
             FillTable12TestData();
-            FillTable4TestData();
+            FillTable4TestData(); 
         }
 
         private async void btnSaveCodes_Click(object sender, EventArgs e)
@@ -219,16 +219,25 @@ namespace ListFile1.PresentationWF
 
         private void FillTable12TestData()
         {
-            var testTable = new DataTable();
-            testTable.Columns.Add(new DataColumn("PrizeName", typeof(string)) { Caption = "Приз" });
-            testTable.Columns.Add(new DataColumn("Amount", typeof(uint)) { Caption = "Количество", DefaultValue = 0 });
+            //var testTable = new DataTable();
+            //testTable.Columns.Add(new DataColumn("PrizeName", typeof(string)) { Caption = "Приз" });
+            //testTable.Columns.Add(new DataColumn("Amount", typeof(uint)) { Caption = "Количество", DefaultValue = 0 });
 
-            testTable.Rows.Add("Чашка", 5);
-            testTable.Rows.Add("Стакан", 2);
-            testTable.Rows.Add("Ложка", 10);
-            testTable.Rows.Add("Салфетка", 50);
+            //testTable.Rows.Add("Чашка", 5);
+            //testTable.Rows.Add("Стакан", 2);
+            //testTable.Rows.Add("Ложка", 10);
+            //testTable.Rows.Add("Салфетка", 50);
+            //dgwTable12.DataSource = testTable;
 
-            dgwTable12.DataSource = testTable;
+            dgwTable12.Columns.Clear();
+            dgwTable12.Columns.Add("PrizeName","Приз");
+            dgwTable12.Columns.Add("Amount", "Количество");
+
+            dgwTable12.Rows.Add("Чашка", 5);
+            dgwTable12.Rows.Add("Стакан", 2);
+            dgwTable12.Rows.Add("Ложка", 10);
+            dgwTable12.Rows.Add("Салфетка", 50);
+
         }
 
         private void FillTable4TestData()
@@ -258,5 +267,41 @@ namespace ListFile1.PresentationWF
         }
 
         #endregion
+
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            PCreateAdv.Visible = e.TabPageIndex == 2;
+            btnSaveTable.Visible = e.TabPageIndex == 2;
+            btnSaveCodes.Visible = e.TabPageIndex == 1;
+            btnSaveFile.Visible = e.TabPageIndex == 0;
+        }
+
+        private void dgwTable12_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            // 1 is column index for amount ;
+            if (e.ColumnIndex != 1)
+                return;
+            var enteredString = e.FormattedValue.ToString();
+            var isInvalidValidString = string.IsNullOrWhiteSpace(enteredString);
+            if (isInvalidValidString)
+            {
+                dgwTable12.Rows[e.RowIndex].ErrorText = "Количество не може бути пустим ";
+                e.Cancel = true;
+                return;
+            }
+            isInvalidValidString = enteredString.Trim().Any(x =>!char.IsNumber(x));
+            if(isInvalidValidString)
+            {
+                dgwTable12.Rows[e.RowIndex].ErrorText = "Количество може бути тільки цілим числом ";
+                e.Cancel = true;
+                return;
+            }
+        }
+
+        private void dgwTable12_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dgwTable12.Rows[e.RowIndex].ErrorText = string.Empty;
+        }
     }
 }
