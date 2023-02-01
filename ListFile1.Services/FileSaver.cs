@@ -11,7 +11,7 @@ namespace ListFile1.Services
     {
         public async Task SaveNumeratedListAsync(string fileName, ICollection<Prize> prizeList)
         {
-            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding("iso-8859-1")))
+            using (StreamWriter writer = GetStreamWriter(fileName))
             {
                 int count = prizeList.Count;
 
@@ -26,7 +26,7 @@ namespace ListFile1.Services
 
         public async Task SaveListAsync(string fileName, IEnumerable<string> list)
         {
-            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding("iso-8859-1"))) 
+            using (StreamWriter writer = GetStreamWriter(fileName)) 
             {
                 foreach (var item in list)
                 {
@@ -37,7 +37,7 @@ namespace ListFile1.Services
 
         public async Task SaveMatrixAsync(string fileName, IEnumerable<Matrix> list)
         {
-            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding("iso-8859-1")))
+            using (StreamWriter writer = GetStreamWriter(fileName))
             {
                 await writer.WriteLineAsync("\tprize\tcounter prize\tall counter");
 
@@ -53,6 +53,17 @@ namespace ListFile1.Services
                     }
                 }
             }
+        }
+
+        private bool WriteText(string fileName, IEnumerable<string> strings)
+        {
+            //File.WriteAllLines(fileName, strings, Encoding.ge);
+            return true;
+        }
+
+        private StreamWriter GetStreamWriter(string fileName)
+        {
+            return new StreamWriter(fileName, false, Encoding.Default);
         }
     }
 }

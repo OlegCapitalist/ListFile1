@@ -258,5 +258,13 @@ namespace ListFile1.PresentationWF
         }
 
         #endregion
+
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            PCreateAdv.Visible = e.TabPageIndex == 2;
+            btnSaveTable.Visible = e.TabPageIndex == 2;
+            btnSaveCodes.Visible = e.TabPageIndex == 0 || e.TabPageIndex == 1;
+        }
     }
 }
