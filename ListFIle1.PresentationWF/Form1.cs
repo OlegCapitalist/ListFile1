@@ -174,12 +174,7 @@ namespace ListFile1.PresentationWF
         {
             int columnsCount = Convert.ToInt32(tbxColumnsCount.Text);
 
-            dgwTable4.DataSource = null;
-
-            var clearTable = new DataTable();
-
-            CreateTable4(clearTable, columnsCount);
-            dgwTable4.DataSource = clearTable;
+            CreateTable4(columnsCount);
         }
 
         private void IntOnly_KeyPress(object sender, KeyPressEventArgs e)
@@ -213,62 +208,6 @@ namespace ListFile1.PresentationWF
             // do nothing
         }
 
-        #endregion
-
-        #region Private Methods
-
-        private void FillTable12TestData()
-        {
-            //var testTable = new DataTable();
-            //testTable.Columns.Add(new DataColumn("PrizeName", typeof(string)) { Caption = "Приз" });
-            //testTable.Columns.Add(new DataColumn("Amount", typeof(uint)) { Caption = "Количество", DefaultValue = 0 });
-
-            //testTable.Rows.Add("Чашка", 5);
-            //testTable.Rows.Add("Стакан", 2);
-            //testTable.Rows.Add("Ложка", 10);
-            //testTable.Rows.Add("Салфетка", 50);
-            //dgwTable12.DataSource = testTable;
-
-            dgwTable12.Columns.Clear();
-            dgwTable12.Columns.Add("PrizeName","Приз");
-            dgwTable12.Columns.Add("Amount", "Количество");
-
-            dgwTable12.Rows.Add("Чашка", 5);
-            dgwTable12.Rows.Add("Стакан", 2);
-            dgwTable12.Rows.Add("Ложка", 10);
-            dgwTable12.Rows.Add("Салфетка", 50);
-
-        }
-
-        private void FillTable4TestData()
-        {
-            var testTable = new DataTable();
-
-            CreateTable4(testTable, 5);
-
-            testTable.Rows.Add("Киев", "5%", 100, "7%", 50, "10%", 30, "15%", 10, "25%", 3);
-            testTable.Rows.Add("Одесса", "5%", 90, "7%", 30, "10%", 25, "15%", 6, "25%", 2);
-            testTable.Rows.Add("Севастополь", "5%", 80, "7%", 60, "10%", 16, "15%", 7, "25%", 4);
-            testTable.Rows.Add("Харьков", "5%", 95, "7%", 50, "10%", 23, "15%", 9, "25%", 2);
-            testTable.Rows.Add("Львов", "5%", 70, "7%", 30, "10%", 29, "15%", 12, "25%", 1);
-
-            dgwTable4.DataSource = testTable;
-        }
-
-        private void CreateTable4(DataTable testTable, int columnsCount)
-        {
-            testTable.Columns.Add(new DataColumn("BlockName", typeof(string)) { Caption = "Наименование блока" });
-
-            for (int i = 1; i <= columnsCount; i++)
-            {
-                testTable.Columns.Add(new DataColumn($"PrizeName{i}", typeof(string)) { Caption = $"Приз {i}" });
-                testTable.Columns.Add(new DataColumn($"Amount{i}", typeof(int)) { Caption = $"Количество Приз {i}", DefaultValue = 0 });
-            }
-        }
-
-        #endregion
-
-
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             PCreateAdv.Visible = e.TabPageIndex == 2;
@@ -282,6 +221,72 @@ namespace ListFile1.PresentationWF
             // 1 is column index for amount ;
             if (e.ColumnIndex != 1)
                 return;
+
+            IntColumnsValidation(e);
+        }
+
+        private void dgwTable4_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 0 || e.ColumnIndex % 2 == 1)
+                return;
+
+            IntColumnsValidation(e);
+        }
+
+        private void dgwTable12_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dgwTable12.Rows[e.RowIndex].ErrorText = string.Empty;
+        }
+
+        private void dgwTable4_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            dgwTable12.Rows[e.RowIndex].ErrorText = string.Empty;
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void FillTable12TestData()
+        {
+            dgwTable12.Columns.Clear();
+            dgwTable12.Columns.Add("PrizeName","Приз");
+            dgwTable12.Columns.Add("Amount", "Количество");
+
+            dgwTable12.Rows.Add("Чашка", 5);
+            dgwTable12.Rows.Add("Стакан", 2);
+            dgwTable12.Rows.Add("Ложка", 10);
+            dgwTable12.Rows.Add("Салфетка", 50);
+
+        }
+
+        private void FillTable4TestData()
+        {
+            CreateTable4(5);
+
+            dgwTable4.Rows.Add("Киев", "5%", 100, "7%", 50, "10%", 30, "15%", 10, "25%", 3);
+            dgwTable4.Rows.Add("Одесса", "5%", 90, "7%", 30, "10%", 25, "15%", 6, "25%", 2);
+            dgwTable4.Rows.Add("Севастополь", "5%", 80, "7%", 60, "10%", 16, "15%", 7, "25%", 4);
+            dgwTable4.Rows.Add("Харьков", "5%", 95, "7%", 50, "10%", 23, "15%", 9, "25%", 2);
+            dgwTable4.Rows.Add("Львов", "5%", 70, "7%", 30, "10%", 29, "15%", 12, "25%", 1);
+        }
+
+        private void CreateTable4(int columnsCount)
+        {
+            dgwTable4.DataSource = null;
+            dgwTable4.Rows.Clear();
+            dgwTable4.Columns.Clear();
+            dgwTable4.Columns.Add("BlockName", "Наименование блока");
+
+            for (int i = 1; i <= columnsCount; i++)
+            {
+                dgwTable4.Columns.Add($"PrizeName{i}", $"Приз {i}");
+                dgwTable4.Columns.Add($"Amount{i}", $"Количество Приз {i}");
+            }
+        }
+
+        private void IntColumnsValidation(DataGridViewCellValidatingEventArgs e)
+        {
             var enteredString = e.FormattedValue.ToString();
             var isInvalidValidString = string.IsNullOrWhiteSpace(enteredString);
             if (isInvalidValidString)
@@ -290,18 +295,14 @@ namespace ListFile1.PresentationWF
                 e.Cancel = true;
                 return;
             }
-            isInvalidValidString = enteredString.Trim().Any(x =>!char.IsNumber(x));
-            if(isInvalidValidString)
+            isInvalidValidString = enteredString.Trim().Any(x => !char.IsNumber(x));
+            if (isInvalidValidString)
             {
                 dgwTable12.Rows[e.RowIndex].ErrorText = "Количество може бути тільки цілим числом ";
                 e.Cancel = true;
                 return;
             }
         }
-
-        private void dgwTable12_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            dgwTable12.Rows[e.RowIndex].ErrorText = string.Empty;
-        }
+        #endregion
     }
 }
