@@ -87,7 +87,7 @@ namespace ListFile1.PresentationWF
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 392);
+            this.tabControl1.Size = new System.Drawing.Size(800, 391);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
@@ -96,8 +96,8 @@ namespace ListFile1.PresentationWF
             this.tabPageOption12.Controls.Add(this.splitContainer1);
             this.tabPageOption12.Location = new System.Drawing.Point(4, 24);
             this.tabPageOption12.Name = "tabPageOption12";
-            this.tabPageOption12.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPageOption12.Size = new System.Drawing.Size(792, 364);
+            this.tabPageOption12.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageOption12.Size = new System.Drawing.Size(792, 363);
             this.tabPageOption12.TabIndex = 0;
             this.tabPageOption12.Text = "List base";
             this.tabPageOption12.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@ namespace ListFile1.PresentationWF
             this.splitContainer1.Panel2.Controls.Add(this.rbtStraigth);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(786, 358);
+            this.splitContainer1.Size = new System.Drawing.Size(786, 357);
             this.splitContainer1.SplitterDistance = 542;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 6;
@@ -134,7 +134,7 @@ namespace ListFile1.PresentationWF
             this.dgwTable12.Name = "dgwTable12";
             this.dgwTable12.RowHeadersWidth = 102;
             this.dgwTable12.RowTemplate.Height = 25;
-            this.dgwTable12.Size = new System.Drawing.Size(542, 358);
+            this.dgwTable12.Size = new System.Drawing.Size(542, 357);
             this.dgwTable12.TabIndex = 1;
             this.dgwTable12.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwTable12_CellEndEdit);
             this.dgwTable12.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgwTable12_CellValidating);
@@ -184,7 +184,7 @@ namespace ListFile1.PresentationWF
             this.tabPageOption3.Controls.Add(this.tbxRange);
             this.tabPageOption3.Location = new System.Drawing.Point(4, 24);
             this.tabPageOption3.Name = "tabPageOption3";
-            this.tabPageOption3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageOption3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageOption3.Size = new System.Drawing.Size(792, 364);
             this.tabPageOption3.TabIndex = 1;
             this.tabPageOption3.Text = "Code generation";
@@ -277,8 +277,8 @@ namespace ListFile1.PresentationWF
             this.tabPageOption4.Controls.Add(this.dgwTable4);
             this.tabPageOption4.Location = new System.Drawing.Point(4, 24);
             this.tabPageOption4.Name = "tabPageOption4";
-            this.tabPageOption4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPageOption4.Size = new System.Drawing.Size(792, 364);
+            this.tabPageOption4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageOption4.Size = new System.Drawing.Size(792, 363);
             this.tabPageOption4.TabIndex = 2;
             this.tabPageOption4.Text = "Adv campaign (split)";
             this.tabPageOption4.UseVisualStyleBackColor = true;
@@ -291,15 +291,17 @@ namespace ListFile1.PresentationWF
             this.dgwTable4.Name = "dgwTable4";
             this.dgwTable4.RowHeadersWidth = 102;
             this.dgwTable4.RowTemplate.Height = 25;
-            this.dgwTable4.Size = new System.Drawing.Size(786, 358);
+            this.dgwTable4.Size = new System.Drawing.Size(786, 357);
             this.dgwTable4.TabIndex = 0;
+            this.dgwTable4.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwTable4_CellEndEdit);
+            this.dgwTable4.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgwTable4_CellValidating);
             this.dgwTable4.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgw_DataError);
             // 
             // btnSaveFile
             // 
             this.btnSaveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveFile.CausesValidation = false;
-            this.btnSaveFile.Location = new System.Drawing.Point(683, 21);
+            this.btnSaveFile.Location = new System.Drawing.Point(683, 24);
             this.btnSaveFile.Name = "btnSaveFile";
             this.btnSaveFile.Size = new System.Drawing.Size(75, 23);
             this.btnSaveFile.TabIndex = 2;
@@ -310,7 +312,7 @@ namespace ListFile1.PresentationWF
             // btnSaveCodes
             // 
             this.btnSaveCodes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveCodes.Location = new System.Drawing.Point(683, 19);
+            this.btnSaveCodes.Location = new System.Drawing.Point(683, 22);
             this.btnSaveCodes.Name = "btnSaveCodes";
             this.btnSaveCodes.Size = new System.Drawing.Size(75, 23);
             this.btnSaveCodes.TabIndex = 6;
@@ -351,7 +353,7 @@ namespace ListFile1.PresentationWF
             // btnSaveTable
             // 
             this.btnSaveTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveTable.Location = new System.Drawing.Point(683, 21);
+            this.btnSaveTable.Location = new System.Drawing.Point(683, 24);
             this.btnSaveTable.Name = "btnSaveTable";
             this.btnSaveTable.Size = new System.Drawing.Size(75, 23);
             this.btnSaveTable.TabIndex = 3;
@@ -379,7 +381,7 @@ namespace ListFile1.PresentationWF
             this.splitContainer2.Panel2.Controls.Add(this.btnSaveTable);
             this.splitContainer2.Panel2.Controls.Add(this.btnSaveCodes);
             this.splitContainer2.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer2.SplitterDistance = 392;
+            this.splitContainer2.SplitterDistance = 391;
             this.splitContainer2.SplitterWidth = 2;
             this.splitContainer2.TabIndex = 5;
             // 
