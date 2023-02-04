@@ -10,6 +10,8 @@ namespace ListFile1.PresentationWF
 
         private FileSaver _fileSaver;
         private ListIncrement _listIncrementService;
+        private EventHandler _currentSaveFileEvent;
+        private List<EventHandler> _saveFileEvents;
 
         #endregion
 
@@ -27,7 +29,15 @@ namespace ListFile1.PresentationWF
 
         #region Forms Events
 
-        private async void SaveFile_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            FillTable12TestData();
+            FillTable4TestData();
+            FillSaveFileEvents();
+            AssignDefaultSaveFileEvent();
+        }
+
+        private async void btnSaveFile_Click(object sender, EventArgs e)
         {
             var prizeList = new List<Prize>();
 
@@ -71,12 +81,6 @@ namespace ListFile1.PresentationWF
             }
 
             await _fileSaver.SaveNumeratedListAsync(saveFileDialog.FileName, prizeList);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            FillTable12TestData();
-            FillTable4TestData(); 
         }
 
         private async void btnSaveCodes_Click(object sender, EventArgs e)
@@ -211,9 +215,18 @@ namespace ListFile1.PresentationWF
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             PCreateAdv.Visible = e.TabPageIndex == 2;
-            btnSaveTable.Visible = e.TabPageIndex == 2;
-            btnSaveCodes.Visible = e.TabPageIndex == 1;
-            btnSaveFile.Visible = e.TabPageIndex == 0;
+
+            btnSaveFile.Click -= _currentSaveFileEvent;
+            if (e.TabPageIndex > _saveFileEvents.Count()-1)
+            {
+                btnSaveFile.Visible = false;
+            }
+            else
+            {
+                btnSaveFile.Visible = true;
+                _currentSaveFileEvent = _saveFileEvents[e.TabPageIndex];
+                btnSaveFile.Click += _currentSaveFileEvent;
+            }
         }
 
         private void dgwTable12_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -271,6 +284,22 @@ namespace ListFile1.PresentationWF
             dgwTable4.Rows.Add("ֻüגמג", "5%", 70, "7%", 30, "10%", 29, "15%", 12, "25%", 1);
         }
 
+        private void FillSaveFileEvents()
+        {
+            _saveFileEvents = new()
+            {
+                new EventHandler(btnSaveFile_Click),
+                new EventHandler(btnSaveCodes_Click),
+                new EventHandler(btnSaveTable_Click)
+            };
+        }
+
+        private void AssignDefaultSaveFileEvent()
+        {
+            _currentSaveFileEvent = _saveFileEvents[0];
+            btnSaveFile.Click += _currentSaveFileEvent;
+        }
+
         private void CreateTable4(int columnsCount)
         {
             dgwTable4.DataSource = null;
@@ -303,6 +332,7 @@ namespace ListFile1.PresentationWF
                 return;
             }
         }
+        
         #endregion
     }
 }
